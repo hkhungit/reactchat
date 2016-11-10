@@ -3,8 +3,6 @@ import { render } from 'react-dom'
 import { BrowserRouter, Match, Miss } from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import './assets/css/style.css'
 
@@ -15,7 +13,7 @@ injectTapEventPlugin();
 
 const Root = () =>{
   return (
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <MuiThemeProvider>
       <BrowserRouter>
         <div>
           <Match exactly pattern="/" component={Main} />

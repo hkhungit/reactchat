@@ -5,3 +5,11 @@
   height: 100%;
   font-size: 15px;
 }
+
+.list-chats {
+  width: 400px;
+  max-height: 300px;
+  overflow-y: scroll;
+  transform: scaleY(-1);
+  background: rgba(0, 0, 0, 0.04);
+}
