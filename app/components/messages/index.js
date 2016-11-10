@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
-import {List} from 'material-ui/List';
 
 import Item from './item'
 import Message  from '../../stores/Message'
@@ -13,16 +12,18 @@ class Messages extends Component {
   }
 
   renderMessage(key, message) {
-    return <Item key={key} message={message} />
+    return <Item key={key} message={message}/>
   }
 
   render() {
     const { messages } = Message
 
     return (
-      <List className='list-chats'>
-        { Object.keys(messages).reverse().map(key => this.renderMessage(key, messages[key]))}
-      </List>
+      <div className="chat active-chat" data-chat="person1">
+        <div>
+          { Object.keys(messages).reverse().map(key => this.renderMessage(key, messages[key]))}
+        </div>
+      </div>
     );
   }
 }

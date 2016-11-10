@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import Avatar from 'material-ui/Avatar';
-import {ListItem} from 'material-ui/List';
-
 
 import UserStore  from '../../stores/User'
 import Chat  from '../../stores/Chat'
-
-import styles from './style'
 
 class Item extends Component {
   render() {
@@ -15,14 +10,22 @@ class Item extends Component {
 
     if (UserStore.uid === user.uid)
       return (
-        <div style={{...styles.item,...styles.right}}>
-          <ListItem primaryText={message.content} disabled style={{...styles.itemInner,...styles.itemRightInner}} rightAvatar={<Avatar style={styles.rightAvatar}src={user.photoURL}/>}/>      
+        <div className="outner-bubble">
+          <div className="bubble me">
+            {message.content}
+          </div>
+
+          <img src={user.photoURL} alt={user.displayName} className="avatar" />
         </div>
       )
     
-    return  (
-      <div style={{...styles.item,...styles.left}}>
-        <ListItem primaryText={message.content} disabled style={{...styles.itemInner,...styles.itemLeftInner}} leftAvatar={<Avatar src={user.photoURL}/>}/>
+    return (
+      <div className="outner-bubble you">
+        <img src={user.photoURL} alt={user.displayName} className="avatar" />
+
+        <div className="bubble you">
+          {message.content}
+        </div>
       </div>
     )
   }

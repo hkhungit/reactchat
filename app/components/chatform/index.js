@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-
 import UserStore  from '../../stores/User'
 import Message  from '../../stores/Message'
 import Chat  from '../../stores/Chat'
-
-import styles from './style'
 
 export default class ChatForm extends Component {
   constructor(props) {
@@ -18,7 +13,7 @@ export default class ChatForm extends Component {
 
   onSubmit(e) {
     e.preventDefault()
-    const content = this.messageRef.getValue()
+    const content = this.input.value
     if (content === '' || !content)
       return
 
@@ -34,14 +29,12 @@ export default class ChatForm extends Component {
 
   render() {
     return (
-      <form {...styles.form} ref={form => this.formChat = form} className="component-login" onSubmit={this.onSubmit}>
-        <TextField
-          hintText="Message"
-          {...styles.textField}
-          ref={ref => this.messageRef = ref}
-        />
-        <div>
-          <RaisedButton type="submit" label="Send" primary={true} onClick={this.onSubmit}/>
+      <form ref={form => this.formChat = form} className="component-login" onSubmit={this.onSubmit}>
+        <div className="write">
+          <a className="write-link attach"></a>
+          <input type="text" ref={ref => this.input = ref}/>
+          <a className="write-link smiley"></a>
+          <a className="write-link send" onClick={this.onSubmit}></a>
         </div>
       </form>
     )

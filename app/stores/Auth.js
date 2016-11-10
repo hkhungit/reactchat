@@ -3,6 +3,13 @@ import { auth } from '../db/firebase'
 import UserStore from './User'
 
 class Auth {
+
+
+
+
+
+
+  
   constructor() {
     this.authHandler = this.authHandler.bind(this)
   }
