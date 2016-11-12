@@ -80,7 +80,7 @@ export default class ChatForm extends Component {
           <textarea className="input" ref={ref => this.messageRef = ref} onKeyDown={this.onKeydown}></textarea>
           <div key={1} className="camera"  ref={ref => this.cameraRef = ref} onClick={this.onCamera}></div>
           <input type="file" style={{display: 'none'}} accept="image/*" ref={ref => this.inputRef = ref} />
-          <div key={2} className="emoji" onClick={this.onSubmit}></div>
+          <div key={2} className="emoji" onClick={() => this.emojiRef.toggleActive()}></div>
           <div key={3} className="send" onClick={this.onSubmit}></div>
         </div>
       </form>
