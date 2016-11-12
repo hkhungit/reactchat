@@ -37,14 +37,26 @@ class Main extends Component {
       )
 
     return (
-      <Flexbox flexDirection="column" minHeight="100vh">
-        <Header />
-        <Flexbox flexGrow={1} flexDirection="column" maxWidth="400px" alignSelf='center'>
+      <div className="wrapper">
+        <nav className="nav">
+          <div className="default-nav">
+            <div className="main-nav">
+              <div className="toggle"></div>
+              <div className="main-nav-item">
+                <a href="" className="main-nav-item-link">
+                  Fwz Chatroom
+                </a>
+              </div>
+              <div className="options">
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div className="inner">
           <Messages />
-          <ChatForm />
-        </Flexbox>
-        <Footer />
-      </Flexbox>
+        </div>
+        <ChatForm />
+      </div>
     )
   }
 }

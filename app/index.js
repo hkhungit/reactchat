@@ -3,8 +3,9 @@ import { render } from 'react-dom'
 import { BrowserRouter, Match, Miss } from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import 'animate.css'
 
-import './assets/css/style.css'
+import './assets/css/style.scss'
 
 import Main from './pages/Main'
 import NotFound from './pages/NotFound'

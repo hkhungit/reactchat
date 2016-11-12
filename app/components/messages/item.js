@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import Avatar from 'material-ui/Avatar';
-import {ListItem} from 'material-ui/List';
-
-
 import UserStore  from '../../stores/User'
 import Chat  from '../../stores/Chat'
-
-import styles from './style'
+import randomstring from 'randomstring'
 
 class Item extends Component {
   render() {
@@ -15,14 +11,20 @@ class Item extends Component {
 
     if (UserStore.uid === user.uid)
       return (
-        <div style={{...styles.item,...styles.right}}>
-          <ListItem primaryText={message.content} disabled style={{...styles.itemInner,...styles.itemRightInner}} rightAvatar={<Avatar style={styles.rightAvatar}src={user.photoURL}/>}/>      
+        <div className="message-wrapper me">
+          <Avatar className="circle-wrapper animated bounceIn" src={user.photoURL}/>
+          <div className="text-wrapper animated fadeIn">
+            {message.content.split('\n').map(e => <p key={`${Date.now()}-${randomstring.generate(10)}`}> {e}</p>)}
+          </div>      
         </div>
       )
     
     return  (
-      <div style={{...styles.item,...styles.left}}>
-        <ListItem primaryText={message.content} disabled style={{...styles.itemInner,...styles.itemLeftInner}} leftAvatar={<Avatar src={user.photoURL}/>}/>
+      <div className="message-wrapper them">
+        <Avatar className="circle-wrapper animated bounceIn" src={user.photoURL}/>
+        <div className="text-wrapper animated fadeIn">
+          {message.content.split('\n').map(e => <p key={`${Date.now()}-${randomstring.generate(10)}`}> {e}</p>)}
+        </div>      
       </div>
     )
   }

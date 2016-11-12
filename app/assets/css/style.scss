@@ -1,0 +1,365 @@
+$blue: #2196F3;
+$dingy: #495B6A;
+$white: #ffffff;
+$purple: #673AB7;
+$yellow: #FFEB3B;
+$red: #F44336;
+$orange: #FF5722;
+$black: #333333;
+
+$nav: 100;
+
+$navHeight: 64px;
+
+$trans: 0.3s ease;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* position: relative; */
+  background-color: $orange;
+}
+
+.title {
+  color: $white;
+  text-align: center;
+  font-weight: 100;
+}
+
+.wrapper {
+  height: 520px;
+  width: 320px;
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.5);
+  
+  .inner {
+    overflow: scroll;
+    height: 520px;
+    transform: scale(-1);
+    padding-top: $navHeight;
+    background: darken($white, 5%);
+    
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    //gotta hide windows scrollbars
+    
+    &::-webkit-scrollbar {
+      width: 0 !important
+    }
+    
+    .content {
+      padding: ($navHeight - ($navHeight/1.5)) / 2;
+      position: relative;
+      margin-bottom: $navHeight/2;
+    }
+  }
+  
+  transition: $trans;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $navHeight;
+  z-index: $nav;
+
+  .default-nav {
+    height: $navHeight;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: $nav + 10;
+
+    background-color: $red;
+    border-bottom: 3px solid darken($red, 10%);;
+    color: $white;
+
+    -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+    box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+
+    .main-nav {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: $navHeight;
+      top: 0;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+      
+      .toggle {
+        height: 32px;
+        width: 32px;
+        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_arrow_back_white_48dp.png);
+        background-size: contain;
+        margin: 16px;
+        float: left;
+        
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      
+      .options {
+        height: 32px;
+        width: 32px;
+        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_more_vert_white_48dp.png);
+        background-size: contain;
+        margin: 16px;
+        position: absolute;
+        right: 0;
+        
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .main-nav-item {
+        float: left;
+        height: $navHeight;
+        margin-right: 50px;
+        position: relative;
+
+        // text-align: center;
+        line-height: $navHeight;
+
+        .main-nav-item-link {
+          display: block;
+          position: relative;
+          height: $navHeight;
+          width: 100%;
+
+          text-align: center;
+          line-height: $navHeight;
+          text-decoration: none;
+          color: inherit;
+
+          transition: $trans;
+        }
+
+        transition: $trans;
+      }
+      
+      transition: $trans;
+    }
+
+    transition: $trans;
+  }
+  
+  transition: $trans;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: $navHeight;
+  background: $white;
+  
+  /* box-shadow: 0px -3px 3px 0px rgba(50, 50, 50, 0.1); */
+  
+  .input {
+    height: $navHeight;
+    background: $white;
+    border: none;
+    width: calc(100% - #{$navHeight} - 20px);
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 5%;
+    resize: none;
+    overflow: scroll;
+    padding-top: ($navHeight/2) - 8;
+    font-weight: 300;
+    
+    &:focus {
+      outline: none;
+    }
+  
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    //gotta hide windows scrollbars
+    
+    &::-webkit-scrollbar {
+      width: 0 !important
+    }
+  }
+
+  .send {
+    position: fixed;
+    height: $navHeight/1.5;
+    width: $navHeight/1.5;
+    border-radius: 50%;
+    border: 0;
+    background: $red;
+    color: $white;
+    
+    bottom: ($navHeight - ($navHeight/1.5)) / 2;
+    right: ($navHeight - ($navHeight/1.5)) / 2;
+    
+    &:before {
+      content: '';
+      background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_send_white_48dp.png) no-repeat center center;
+    background-size: $navHeight/2.5;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+    
+    &:focus {
+      outline: none;
+    }
+    
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .emoji {
+    @extend .send;
+    background: #c4c4c4;
+    right: ($navHeight - ($navHeight/1.5)) / 2 + 45px;
+    &:before {
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAEr0lEQVRoQ92ai5VURRCGqyJgjUCIQI1AiECIQIhAjECJQIhAiACIQIhAiUCIQIng93xzqsaanntvd8/OLGifM2dfffvWX4+/Hr1u//Hl55Bf0m0z+9bMvi6fq+bsv83sj/J56+7vr/v+kwFIQsDvzOxxCH2KLAB6amav3R2A02saQAj+QwieWv5gZm/i897d+f5oSbprZliLr3y+jE0ID5Bns0CmAEi6b2a/hBC8+4WZvXL3V9OqM7M4jzO/j+dxqR9nzhsCEFpH8IfxotdY4Bw+zHkRQ1gAl2Q9DyBdt+oCiMNfhp9/NLP7ay5yihXqM+FiWPNWBPu9nkttApAEq/xmZvj62xC+q5XrAAlrAwJW412AINgX1yqA0PzvIfwLd0/3uY58w89Kwo2IDUDcWbPEIoDQAprHAjcufKIsILDAojutAfg1ApZkA919siUJSsadnrv7o1aQIwBBbQQtAXu7F0SXRhbeAL0S2A9aij0AEJvxe5INJltMSJcWuj0/2AmXBsg3VaktgJ/N7KdI7SSYz2ZJgpnIE0/cHTl3aw8gtP9nsA5Rf+1C65zogxWR74CVKgBokuD9ZKzTA1xY6ZG7Q7MHFsD3oc2jQOkdfFN/LwTzxt3v7QEU83xwdwL4s12ScG2q2C8I5p0LSZp2nwBNWY3VqEifzaCWxLMQBUmKMnoo5lo3SgBUghy4960tYZqAz62AeDACQhJ5prLcZrlQzyzKBvTjBJDZboj7JdGFUV63a2fWAfB/LeyhD0CRm6vkhF2VkAA48Mrdu+V1uFzmi/ZlXfot8dY+e8DvHSWIpObudxIAv7AJAAQ6nFzXO3cnHrpLEn7/VbOxCz73S9rLexKAsAI+jCUQhA7tYc99igAoIDuwd5wz00aeBUBXzRfc8L8EAHPcGo2BCyp36OiwwEd3vzqJRofecqFNazQ6lMho8rca7HPI3HvHWiLrlhLtg+cQtj1DUleRa6VE8vouOSwJFyMWMjat3VDJMQOyKIhWFksv1kaSyD/I+28xF7yeyWW1nC7lLI/A3U9mhFzbK4kuMLuskffvhw3TDU3RFPIMjwBXrMrAjCYqC7tNy/YaGg7L7n8zrTfuND2QDYsztELruANuc3eLIEoNdTAtWWvqu6VxMwJEJuIDi6zO+lfuFIZGlqUEX27qQytYgVig4xktrWEwNJmz/gSTNzL8TJHH2XVIxp0CcbTrbbdWiT2eIcD3JfvWYGu4yQjwAEFA/BmmWlqYn/EIPW1X8KLUnJZsD7byjSVY9s1zT0v175Et+VX21ztKPGVQJomBFopZnJZsDXfxaUrlxZnkDKBT90rKGS0lN0F+1O1tjdcrK904iCL85ox25IIjsy9f8cGbuOCg6cdtuvTa7YGD+tKdEB4QFxn6RuwgPNZfdZvqkl0AhQkotPI2ESZhijA0y+nFQCQpphyZkbn95BKxa+0hAIWdeAFAkvOhQpIePfH0ksS0mTPz+gqeR/Dha9spAMUazIX4JN9jiXrRTXY9WpK4aakX3Umz+DqKeTqi9WkXWhEGP0V7AGlHJKPWAGhasesuS4dOW6ADpv6zR5uN0XL9Zw9c7yShz2KBURVfet8/s0Z+T7545lcAAAAASUVORK5CYII) no-repeat center center;
+    }
+  }
+}
+
+.emojis-box {
+  left: 20px;
+  right: 20px;
+  bottom: 80px;
+  padding: 10px;
+  position: fixed;
+  background: white;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(143,143,143,1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(143,143,143,1);
+  box-shadow: 0px 0px 5px 0px rgba(143,143,143,1);
+  
+  &.deactive{
+    display: none; 
+  }
+
+  &:before {
+    content: '';
+    border-width: 20px 20px 0 0;
+    border-color: #ffffff transparent transparent transparent;
+    position: absolute;
+    bottom: -20px;
+    right: 40px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  span {
+    margin: 1px;
+    cursor: pointer;
+  } 
+}
+
+.message-wrapper {
+  position: relative;
+  overflow: hidden;
+  transform: scale(-1);
+  
+  width: 100%;
+  margin: (($navHeight - ($navHeight/1.5)) / 2) 0;
+  padding: (($navHeight - ($navHeight/1.5)) / 2) 0;
+  
+  .circle-wrapper {
+    height: $navHeight/1.5;
+    width: $navHeight/1.5;
+    border-radius: 50%;
+  }
+  
+  .text-wrapper {
+    padding: ($navHeight - ($navHeight/1.5)) / 2;
+    min-height: $navHeight/1.5;
+    margin: 0 ($navHeight - ($navHeight/1.5)) / 2;
+    box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.3);
+    border-radius: 2px;
+    font-weight: 300;
+    position: relative;
+    /* word-break: break-all; */
+    opacity: 0;
+    
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    p {
+      margin: 3px 0 0;
+    }
+  }
+  
+  &.them {
+    .circle-wrapper, .text-wrapper {
+      background: $red;
+      float: left;
+      color: $white;
+    }
+    
+    .text-wrapper {
+      &:before {
+        border-width: 0 10px 10px 0;
+        border-color: transparent $red transparent transparent;
+        position: absolute;
+        top: 0;
+        left: -9px;
+      }
+    }
+  }
+  
+  &.me {
+    .circle-wrapper, .text-wrapper {
+      background: $orange;
+      float: right;
+      color: $black;
+    }
+    
+    .text-wrapper {
+      background: $white;
+      
+      &:before {
+        border-width: 10px 10px 0 0;
+        border-color: $white transparent transparent transparent;
+        position: absolute;
+        top: 0;
+        right: -9px;
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    
+    .inner {
+      height: 100%;
+      height: 100vh;
+    }
+  }
+}
