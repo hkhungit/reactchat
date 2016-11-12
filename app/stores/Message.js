@@ -12,15 +12,28 @@ class Message {
     })
   }
 
-  addMessage(message, sender) {
+  addMessage(message) {
     const timestamp = Date.now()
     const messageId = `message-${timestamp}`
     this.messages = {
       ...this.messages,
-      [messageId]: message
+      [messageId]: {
+        ...message,
+        timestamp
+      }
     }
     
     database.ref(`/messages/${messageId}`).set(message)
+    return messageId
+  }
+
+  updateMessage(messageId, message){
+    this.messages = {
+      ...this.messages,
+      [messageId]: message
+    }
+
+    database.ref(`/messages/${messageId}`).update(message)
   }
 
   removeMessage(key) {

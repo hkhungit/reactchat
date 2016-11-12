@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import Flexbox  from 'flexbox-react'
 import firebase from 'firebase/app'
 import { observer } from 'mobx-react'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import Messages from '../components/messages'
 import ChatForm  from '../components/chatform'
 
@@ -17,23 +14,17 @@ class Main extends Component {
     Auth.onAuthStateChanged()
   }
 
-  renderLogin(){
-    return (
-      <nav className="login">
-        <h2> Login</h2>
-        <button className="facebook" onClick={() => Auth.authenticate(new firebase.auth.FacebookAuthProvider())}>Login facebook ↵</button>
-        <button className="github" onClick={() => Auth.authenticate(new firebase.auth.GithubAuthProvider())}>Login github ↵</button>
-      </nav>
-    )
-  }
-
   render() {
 
     if (!UserStore.uid)
-      return(
-        <Flexbox flexGrow={1}>
-          {this.renderLogin()}
-        </Flexbox>
+      return (
+        <div className="wrapper">
+          <div className="login">
+            <p>Login</p>
+            <button className="facebook" onClick={() => Auth.authenticate(new firebase.auth.FacebookAuthProvider())}>Login facebook ↵</button>
+            <button className="github" onClick={() => Auth.authenticate(new firebase.auth.GithubAuthProvider())}>Login github ↵</button>
+          </div>
+        </div>
       )
 
     return (

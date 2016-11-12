@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import randomstring from 'randomstring'
 
 import Emoji  from '../emojis'
 import UserStore  from '../../stores/User'
 import Message  from '../../stores/Message'
 import Chat  from '../../stores/Chat'
-import styles from './style'
 
 import { storage }  from '../../db/firebase'
 
@@ -15,6 +15,7 @@ export default class ChatForm extends Component {
 
     this.onEmoji = this.onEmoji.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.onCamera = this.onCamera.bind(this)
     this.onKeydown = this.onKeydown.bind(this)
   }
 
@@ -49,6 +50,24 @@ export default class ChatForm extends Component {
     }
   }
 
+  onCamera(e){
+    this.inputRef.click();
+    const storageRef = storage.ref();
+    this.inputRef.onchange = (e)=> {
+      const file = e.target.files[0]
+      if (file){
+        Chat.addUser(UserStore)
+        const imageId = `${Date.now()}-${randomstring.generate(20)}`
+        const messageId = Message.addMessage({ url: {id: imageId}, sender: UserStore.uid })
+
+        storageRef.child(`images/${imageId}`).put(file).then((snapshot) =>{
+          Message.updateMessage(messageId, {url: {id: imageId, photoURL: snapshot.downloadURL}})
+        })
+        this.formChat.reset()
+      }
+    } 
+  }
+
   onEmoji(emoji){
     this.messageRef.value += emoji
   }
@@ -59,6 +78,8 @@ export default class ChatForm extends Component {
         <div className="bottom">
           <Emoji onEmoji={this.onEmoji} ref={ref => this.emojiRef = ref}/>
           <textarea className="input" ref={ref => this.messageRef = ref} onKeyDown={this.onKeydown}></textarea>
+          <div key={1} className="camera"  ref={ref => this.cameraRef = ref} onClick={this.onCamera}></div>
+          <input type="file" style={{display: 'none'}} accept="image/*" ref={ref => this.inputRef = ref} />
           <div key={2} className="emoji" onClick={this.onSubmit}></div>
           <div key={3} className="send" onClick={this.onSubmit}></div>
         </div>

@@ -9,7 +9,7 @@ $black: #333333;
 
 $nav: 100;
 
-$navHeight: 64px;
+$navHeight: 60px;
 
 $trans: 0.3s ease;
 
@@ -40,6 +40,27 @@ body {
   
   box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.5);
   
+  .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+    width: 100%;
+    height: 100%;
+    
+    p {
+      font-size: 2em;  
+      margin: 0 0 10px 0;
+    }
+
+    button {
+      margin: 5px;
+      width: 170px;
+      height: 40px;
+      font-size: 1em;
+    }
+  }
+
   .inner {
     overflow: scroll;
     height: 520px;
@@ -184,6 +205,8 @@ body {
     overflow: scroll;
     padding-top: ($navHeight/2) - 8;
     font-weight: 300;
+    font-size: 16px;
+    font-family: times;
     
     &:focus {
       outline: none;
@@ -200,20 +223,20 @@ body {
 
   .send {
     position: fixed;
-    height: $navHeight/1.5;
-    width: $navHeight/1.5;
+    height: $navHeight/2;
+    width: $navHeight/2;
     border-radius: 50%;
     border: 0;
     background: $red;
     color: $white;
     
     bottom: ($navHeight - ($navHeight/1.5)) / 2;
-    right: ($navHeight - ($navHeight/1.5)) / 2;
+    right: ($navHeight - ($navHeight/1.5)) / 2 - 8px;
     
     &:before {
       content: '';
-      background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_send_white_48dp.png) no-repeat center center;
-    background-size: $navHeight/2.5;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA9klEQVQ4T6WSbXECQRBEXzvAQYIDcAAOkIADcJA4AAcgARwQB0gABeCgU33Zg0txx0exv6Z250339J144+gNlpdg21PgS1I/ok/BNVT6D5JGD+EG9AN8AxOgJyn1rbLtHjAD5sC2QANgB6yBpaTUV7gDOgOr9Ema2D4AA0m5/4Nt15M3Ucyj7VhcAh/AGAi4kZTe6lwCazQvym55i81pAir7RzXr/IeLg896t4RiO06itrYdF/vUrXAZkDCSZmzuJGVgVtvHkaTc3yo34BMwzGeJ7eImqtWge3CsRiU20xybBo5J/C7c9q/bzhpnSRnYrdwGd939AonQZxB8db/AAAAAAElFTkSuQmCC) no-repeat center center;
+    background-size: $navHeight/3.3;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
     }
@@ -230,9 +253,19 @@ body {
   .emoji {
     @extend .send;
     background: #c4c4c4;
-    right: ($navHeight - ($navHeight/1.5)) / 2 + 45px;
+    right: ($navHeight - ($navHeight/1.5)) / 2 + 26px;
     &:before {
-      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAEr0lEQVRoQ92ai5VURRCGqyJgjUCIQI1AiECIQIhAjECJQIhAiACIQIhAiUCIQIng93xzqsaanntvd8/OLGifM2dfffvWX4+/Hr1u//Hl55Bf0m0z+9bMvi6fq+bsv83sj/J56+7vr/v+kwFIQsDvzOxxCH2KLAB6amav3R2A02saQAj+QwieWv5gZm/i897d+f5oSbprZliLr3y+jE0ID5Bns0CmAEi6b2a/hBC8+4WZvXL3V9OqM7M4jzO/j+dxqR9nzhsCEFpH8IfxotdY4Bw+zHkRQ1gAl2Q9DyBdt+oCiMNfhp9/NLP7ay5yihXqM+FiWPNWBPu9nkttApAEq/xmZvj62xC+q5XrAAlrAwJW412AINgX1yqA0PzvIfwLd0/3uY58w89Kwo2IDUDcWbPEIoDQAprHAjcufKIsILDAojutAfg1ApZkA919siUJSsadnrv7o1aQIwBBbQQtAXu7F0SXRhbeAL0S2A9aij0AEJvxe5INJltMSJcWuj0/2AmXBsg3VaktgJ/N7KdI7SSYz2ZJgpnIE0/cHTl3aw8gtP9nsA5Rf+1C65zogxWR74CVKgBokuD9ZKzTA1xY6ZG7Q7MHFsD3oc2jQOkdfFN/LwTzxt3v7QEU83xwdwL4s12ScG2q2C8I5p0LSZp2nwBNWY3VqEifzaCWxLMQBUmKMnoo5lo3SgBUghy4960tYZqAz62AeDACQhJ5prLcZrlQzyzKBvTjBJDZboj7JdGFUV63a2fWAfB/LeyhD0CRm6vkhF2VkAA48Mrdu+V1uFzmi/ZlXfot8dY+e8DvHSWIpObudxIAv7AJAAQ6nFzXO3cnHrpLEn7/VbOxCz73S9rLexKAsAI+jCUQhA7tYc99igAoIDuwd5wz00aeBUBXzRfc8L8EAHPcGo2BCyp36OiwwEd3vzqJRofecqFNazQ6lMho8rca7HPI3HvHWiLrlhLtg+cQtj1DUleRa6VE8vouOSwJFyMWMjat3VDJMQOyKIhWFksv1kaSyD/I+28xF7yeyWW1nC7lLI/A3U9mhFzbK4kuMLuskffvhw3TDU3RFPIMjwBXrMrAjCYqC7tNy/YaGg7L7n8zrTfuND2QDYsztELruANuc3eLIEoNdTAtWWvqu6VxMwJEJuIDi6zO+lfuFIZGlqUEX27qQytYgVig4xktrWEwNJmz/gSTNzL8TJHH2XVIxp0CcbTrbbdWiT2eIcD3JfvWYGu4yQjwAEFA/BmmWlqYn/EIPW1X8KLUnJZsD7byjSVY9s1zT0v175Et+VX21ztKPGVQJomBFopZnJZsDXfxaUrlxZnkDKBT90rKGS0lN0F+1O1tjdcrK904iCL85ox25IIjsy9f8cGbuOCg6cdtuvTa7YGD+tKdEB4QFxn6RuwgPNZfdZvqkl0AhQkotPI2ESZhijA0y+nFQCQpphyZkbn95BKxa+0hAIWdeAFAkvOhQpIePfH0ksS0mTPz+gqeR/Dha9spAMUazIX4JN9jiXrRTXY9WpK4aakX3Umz+DqKeTqi9WkXWhEGP0V7AGlHJKPWAGhasesuS4dOW6ADpv6zR5uN0XL9Zw9c7yShz2KBURVfet8/s0Z+T7545lcAAAAASUVORK5CYII) no-repeat center center;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABfElEQVQ4T62U4VECQQyFv1eB0IFWIFQAViBWoCVABWIFagVgBWoFagVqB3YgVhDnMblzOQ6EGXaGP1z2S95LsuLARwfmsRUYER1gAPQy8QfwJmmxqZBWYIJugSvgBzDIx+AjYA5M2sBrwIjwpccETSU9ldVExAiYJvhCUpVsGbYCzMreU5araz0Zd5d29MtKm0BL6UmqPNvYs4S+2g5JdfIamAHfgGU8pfSBpPuG5DHwaqkp3/Z0qypLoL2ZS3JniQhnN7CpItKSYca541eV1yXQRg8lVYHHQKdpela+kPRVJHbFvv/XlIhYAe468KmkFWjJM0ndXWH/SbZ3y6bYdMCSam+qJNmIGXBii3Jm15uS2Tw2p5L6acF1boX/9/F4+HcDeA5fgM/WsUmgq/TkO3CSq+YxOU/gc4Ic49U8y7mtd3vT6nndLN+rZ0h9UrIrt9ejratX+ORKLekScPbycfC3B2C80+PQqMaXbXz5fHlE9nu+9hmbZuzBX+xfcgiyFecl+5QAAAAASUVORK5CYII=) no-repeat center center;
+    }
+  }
+
+  .camera {
+    @extend .send;
+    background: #c4c4c4;
+    right: ($navHeight - ($navHeight/1.5)) / 2 + 60px;
+    
+    &:before {
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABSUlEQVQ4T71UUVHDQBTcdUAdICEOCAqohOIgKGgdEAl1QHFQHFRCHYCDZTbzLpNcL03KdHifyd6+3ff2jrhz8c58mCSUtAawA/CTNX0A0JA8lsR0hJIeAbwAMDjVK4CK5IhQkjEm+xhgjfkkeaakGkAL4JB1PJA8lVTEGZ8blh01JrStoy1I2lswSau7qVKTnjBmZaUC8GZ1kioAWwCrYP+Of+e82wVhKGwMJNkGwOq9gM56NHDTXb6UIuGwqyST1FNLIWn1fV0ljJ9rkp3igr1uiUOVc4TemCNjyyVCfz+R7JMxR2g7nt1mgtBpaIexWjrDTZ7FtBiSoxwuIfTtsaV3AF+h9MmxAeD5jqIzSxgx8TWz7aTGV26fbz6wxtQp2KMB33RFAhyPSWVCW0uXPX9ZlnLbyXM3inQiZrCU4AKXMvl/D+xfpf4CMo/ZzmRzW6sAAAAASUVORK5CYII=) no-repeat center center;
     }
   }
 }
@@ -277,13 +310,20 @@ body {
   transform: scale(-1);
   
   width: 100%;
-  margin: (($navHeight - ($navHeight/1.5)) / 2) 0;
-  padding: (($navHeight - ($navHeight/1.5)) / 2) 0;
+  padding: (($navHeight - ($navHeight/1.7)) / 2) 0;
   
   .circle-wrapper {
     height: $navHeight/1.5;
     width: $navHeight/1.5;
     border-radius: 50%;
+  }
+
+  .loading-image {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .text-wrapper {
@@ -315,8 +355,16 @@ body {
       float: left;
       color: $white;
     }
+
+    .circle-wrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
     
     .text-wrapper {
+      margin-left: 55px;
+      
       &:before {
         border-width: 0 10px 10px 0;
         border-color: transparent $red transparent transparent;
@@ -333,9 +381,16 @@ body {
       float: right;
       color: $black;
     }
+
+    .circle-wrapper {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
     
     .text-wrapper {
       background: $white;
+      margin-right: 55px;
       
       &:before {
         border-width: 10px 10px 0 0;
